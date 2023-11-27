@@ -4,6 +4,8 @@ import logging
 from core.settings import settings
 from aiogram import Bot, Dispatcher, executor, types
 
+import core.apps.gpt as gpt
+
 
 BOT_TOKEN = settings.bots.bot_token
 
@@ -21,10 +23,9 @@ async def send_welcome(message: types.Message):
     await message.reply("Мяяяяуу!")
 
 
-
-# @dp.message_handler()
-# async def echo(message: types.Message):
-#     await message.answer(message.text)
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.reply(gpt.get_answer())
 
 
 if __name__ == '__main__':
